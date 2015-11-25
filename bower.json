@@ -1,0 +1,23 @@
+{
+  "name": "statbriks",
+  "description": "Statistics analysis briks",
+  "main": "gulfile.js",
+  "authors": [
+    "Riccardo Causo"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-google-chart": "~0.0.11"
+  }
+}

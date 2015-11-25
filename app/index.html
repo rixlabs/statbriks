@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!-- build:css css/combined.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="css/test2.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+<body>
+<div class="testing">
+    ciao poldone poldo
+</div>
+
+<div ng-controller="SandboxController as vm">
+    {{vm.news.title}}
+</div>
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-google-chart/ng-google-chart.js"></script>
+<!-- endbower -->
+
+<!-- build:js scripts/combined.js -->
+<!-- inject:js -->
+<script src="src/app.js"></script>
+<script src="src/sandbox/sandbox.module.js"></script>
+<script src="src/sandbox/sandbox.controller.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
+</body>
+</html>
