@@ -10,7 +10,7 @@
     function SandboxController() {
         var vm = this;
         vm.news = {
-            title: 'ciccione',
+            title: 'ciao',
             description: 'Hot Towel Angular is a SPA template for Angular developers.'
         };
 

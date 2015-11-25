@@ -15,7 +15,7 @@ var minifyCss = require('gulp-minify-css');
 //Watch for file changes
 gulp.task('dev', ['browserSync'], function() {
     gulp.watch('app/scss/**/*.+(scss|sass)', ['sass']);
-    gulp.watch('*.html', browserSync.reload);
+    gulp.watch('app/**/*.html', browserSync.reload);
     gulp.watch('app/**/*.js', browserSync.reload);
 });
 
@@ -76,7 +76,7 @@ gulp.task('browserSync',['appJs', 'appStyles'], function() {
 });
 
 
-gulp.task('build',function(){
+gulp.task('build',['appJs', 'appStyles'],function(){
     return gulp.src('app/index.html')
         .pipe(useref())
         .pipe(gulpif('*.js', uglify()))
