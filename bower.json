@@ -18,6 +18,22 @@
   ],
   "dependencies": {
     "angular": "~1.4.8",
-    "angular-google-chart": "~0.0.11"
+    "angular-google-chart": "~0.0.11",
+    "bootstrap": "~3.3.6",
+    "angular-bootstrap": "~0.14.3",
+    "font-awesome": "~4.5.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
+    }
   }
 }

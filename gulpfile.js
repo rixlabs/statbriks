@@ -12,39 +12,40 @@ var uglify = require('gulp-uglify');
 var minifyCss = require('gulp-minify-css');
 
 
-//Watch for file changes
+//Start BrowserSync and Watch for file changes
 gulp.task('dev', ['browserSync'], function() {
-    gulp.watch('app/scss/**/*.+(scss|sass)', ['sass']);
-    gulp.watch('app/**/*.html', browserSync.reload);
-    gulp.watch('app/**/*.js', browserSync.reload);
+    gulp.watch(config.clientApp+'scss/**/*.+(scss|sass)', ['sass']);
+    gulp.watch(config.clientApp+'**/*.html', browserSync.reload);
+    gulp.watch(config.clientApp+'**/*.js', browserSync.reload);
 });
 
 //Inject all styles after compile sass/scss
 gulp.task('appStyles',['sass'], function() {
-    var sources = gulp.src(['app/**/*.css'], {read: false});
+    var sources = gulp.src([config.clientApp+'**/*.css'], {read: false});
     return gulp.src(config.appIndex)
         .pipe(inject(sources, {relative: true}))
-        .pipe(gulp.dest('./app'));
+        .pipe(gulp.dest('./src'));
 });
 
 //Inject all JS in the right order after loading vendor deps
 gulp.task('appJs', ['wiredep'], function(){
-    var sources = gulp.src(['app/**/*.js'], {read: false})
+    console.log(config);
+    var sources = gulp.src([config.clientApp+'**/*.js'], {read: false})
         .pipe(order(config.jsOrder));
     return gulp.src(config.appIndex)
         .pipe(inject(sources, {relative: true}))
-        .pipe(gulp.dest('./app'));
+        .pipe(gulp.dest('./src'));
 });
 
 
 //Compile stylesheets
 gulp.task('sass', function() {
-    return gulp.src('app/scss/**/*.+(scss|sass)') // added return
+    return gulp.src(config.clientApp+'scss/**/*.+(scss|sass)') // added return
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('app/css'))
+        .pipe(gulp.dest(config.clientApp+'css'))
         // Reloading the stream
         .pipe(browserSync.reload({
             stream: true
@@ -57,7 +58,7 @@ gulp.task('wiredep', function () {
     var wiredep = require('wiredep').stream;
     return gulp.src(config.appIndex)
         .pipe(wiredep(options))
-        .pipe(gulp.dest('./app'));
+        .pipe(gulp.dest('./src'));
 });
 
 
@@ -66,7 +67,7 @@ gulp.task('wiredep', function () {
 gulp.task('browserSync',['appJs', 'appStyles'], function() {
     browserSync({
         server: {
-            baseDir: './app/',
+            baseDir: './src/',
             routes: {
                 '/bower_components': './bower_components'
             }
@@ -77,7 +78,7 @@ gulp.task('browserSync',['appJs', 'appStyles'], function() {
 
 
 gulp.task('build',['appJs', 'appStyles'],function(){
-    return gulp.src('app/index.html')
+    return gulp.src(config.clientApp+'index.html')
         .pipe(useref())
         .pipe(gulpif('*.js', uglify()))
         .pipe(gulpif('*.css', minifyCss()))

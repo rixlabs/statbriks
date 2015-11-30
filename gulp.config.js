@@ -1,5 +1,5 @@
 module.exports = function() {
-    var clientApp = 'app/';
+    var clientApp = 'src/';
     var bower = {
         json: require('./bower.json'),
         directory: './bower_components/',
@@ -8,9 +8,10 @@ module.exports = function() {
     var nodeModules = 'node_modules';
 
     var config = {
+        clientApp: 'src/',
         images: 'images/**/*.*',
         index: 'index.html',
-        appIndex: './app/index.html',
+        appIndex: './src/index.html',
         // app js, with no specs
         js: [
             clientApp + '**/*.module.js',
