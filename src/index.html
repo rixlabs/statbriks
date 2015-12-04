@@ -93,51 +93,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                <ul class="dropdown-menu alert-dropdown">
-                    <li>
-                        <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                    </li>
-                    <li>
-                        <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">View All</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                    </li>
-                </ul>
-            </li>
+
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -182,7 +138,7 @@
         <!-- /.navbar-collapse -->
     </nav>
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" ng-controller="SandboxController as vm">
 
         <div class="container-fluid">
 
@@ -200,7 +156,12 @@
                 </div>
             </div>
             <!-- /.row -->
-
+            <div class="row">
+                {{vm.message}}
+                <my-dialog ng-hide="vm.dialogIsHidden" on-close="vm.hideDialog">
+                    Check out the contents, {{vm.name}}!
+                </my-dialog>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="alert alert-info alert-dismissable">
@@ -309,10 +270,12 @@
                         ciao poldone poldo adesso é brutto
                     </div>
 
-                    <div ng-controller="SandboxController as vm">
+                    <div >
                         {{vm.news.title}}
 
                         <div sandy max="89"></div>
+
+
 
                     </div>
                 </div>
